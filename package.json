@@ -1,0 +1,10 @@
+{
+  "name": "shakesco-package",
+  "version": "1.0.0",
+  "description": "shakesco automation package",
+  "author": "shawn kimtai",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}
