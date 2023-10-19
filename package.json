@@ -1,9 +1,16 @@
 {
-  "name": "shakesco-package",
+  "name": "shakesco",
   "version": "1.0.0",
   "description": "shakesco automation package",
   "author": "shawn kimtai",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/shakesco/Shakeco-Package/issues"
+  },
   "license": "GPL-3.0",
+  "keywords": [
+    "shakesco"
+  ],
   "dependencies": {
     "ethers": "^5.7.2"
   }
