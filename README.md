@@ -5,12 +5,12 @@ autopayment contract and enable automation!
 
 To install:
 ```shell
-npm i shakesco
+npm i @shakesco/automation
 ```
 
 After installing:
 ```javascript
-const shakesco = require("shakesco");
+const shakesco = require("@shakesco/automation");
 const { TestAutomation, delegateAccount, Automation } = shakesco;
 ```
 
