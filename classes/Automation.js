@@ -1,9 +1,9 @@
+//DONT EDIT THIS FILE
 const ethers = require("ethers");
 const WebSocket = require("ws");
 
-//DONT EDIT THIS FILE
 const PORT = `8022`;
-const IP = "192.168.43.123";
+const IP = "192.168.0.107";
 
 const ws = new WebSocket(`ws://${IP}:${PORT}/ws`);
 

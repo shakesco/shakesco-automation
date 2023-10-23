@@ -12,6 +12,7 @@ After installing:
 ```javascript
 const shakesco = require("@shakesco/automation");
 const { TestAutomation, delegateAccount, Automation } = shakesco;
+const { providers, Wallet, utils } = shakesco
 ```
 
 Use the `TestAutomation` for testing before going live.
@@ -27,9 +28,7 @@ When using `TestAutomation`:
   const checkRequest = await shakescocontract.isRequested(delegateAccount);
   console.log(checkRequest);
 ```
-Feel free to use either ethers or web3js to provide a signer/provider.
-
-> ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__.
+> ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
 ```javascript
@@ -39,8 +38,8 @@ When ready to move live:
 
   //Period in seconds
   const period = "86400" //1 week
-  const amount = ethers.utils.ParseEthers("0.002") //amount to request regularly
-  const delegateAddress = /*Ask user for their delegate account*/
+  const amount = utils.parseEther("0.002") //amount to request regularly
+  const delegateAddress = /*Ask user for their delegate account(Address,email or phone)*/
 
   const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);
   console.log(requestUser);//Requested user successfully

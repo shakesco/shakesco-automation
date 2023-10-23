@@ -71,7 +71,7 @@ class TestAutomation {
     //Request user if not already requested
     const tx = await this._automation.requestPermissionUsersToken(
       address,
-      "",
+      "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
       period,
       amount
     );
@@ -122,7 +122,7 @@ class TestAutomation {
     //Request user if not already requested
     const tx = await this._automation.requestPermissionBusinessToken(
       address,
-      "",
+      "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
       period,
       amount
     );
