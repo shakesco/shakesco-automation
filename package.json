@@ -9,7 +9,12 @@
   },
   "license": "GPL-3.0",
   "keywords": [
-    "shakesco"
+    "shakesco",
+    "ethers",
+    "autopayments",
+    "ethereum",
+    "polygon",
+    "contract"
   ],
   "dependencies": {
     "ethers": "^5.7.2"

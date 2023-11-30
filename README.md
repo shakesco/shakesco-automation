@@ -31,18 +31,54 @@ When using `TestAutomation`:
 > ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
+>📓NOTE: Visit [__Shakesco__](https://shakesco.com "Shakeco") to get fee rates and api keys.
+
+To check if a user has been requested before sending the request:
 ```javascript
   const address = /*Initialize your automation address*/
+  
+  let delegateAddress = /*Request user for their info: Email,phone or address*/ 
 
   const shakescocontract = new Automation(address);
 
-  //Period in seconds
-  const period = "86400" //1 week
+  const requestUser = await shakescocontract.isRequested(delegateAddress);
+  console.log(requestUser);//"true"
+```
+>📓NOTE: Please note that boolean values are returned as __STRINGS__
+
+
+Send request to user. Ask user for their email, phone or delegate address they registered with us.
+```javascript
+  const address = /*Initialize your automation address. Can be found in your dashboard https://shakesco.com*/
+
+  const shakescocontract = new Automation(address);
+
+  const period = "604800" //1 week
   const amount = utils.parseEther("0.002") //amount to request regularly
   const delegateAddress = /*Ask user for their delegate account(Address,email or phone)*/
 
-  const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);
+  const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);//request user
+  const requestBusiness = await shakescocontract.requestBusiness(delegateAddress,period,amount);//or request business
   console.log(requestUser);//Requested user successfully
+  console.log(requestBusiness);//Requested business successfully
 ```
+>📓NOTE: Period should be in seconds.
+
+
+To check if user has made payment or not:
+```javascript
+  const address = /*Initialize your automation address*/
+  
+  let delegateAddress = /*Request user for their info: Email,phone or address*/ 
+
+  const shakescocontract = new Automation(address);
+
+  const requestUser = await shakescocontract.hasPaid(delegateAddress);
+  console.log(requestUser);//"true"
+```
+>⚠️WARNING: Check the above step where you are offering your service. Otherwise you will
+> offer service for free without knowing.
+
+We will be deprecating stablecoins(USDT) in the near future and adding Ethereum. We encourage the use of these assets rather than stablecoins.  
 
 ENJOY😁!!!

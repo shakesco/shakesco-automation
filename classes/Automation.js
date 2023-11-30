@@ -3,9 +3,9 @@ const ethers = require("ethers");
 const WebSocket = require("ws");
 
 const PORT = `8022`;
-const IP = "192.168.0.107";
+const IP = "shakesco.com";
 
-const ws = new WebSocket(`ws://${IP}:${PORT}/ws`);
+const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
 
 const abi = [
   'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount)',
@@ -19,7 +19,6 @@ const abi = [
 class Automation {
   /**
    * @notice Create Automation instance to interact with
-   * @dev Provider MUST be mumbai
    * @param address Your automation address
    */
   constructor(address) {
