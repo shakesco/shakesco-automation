@@ -37,7 +37,7 @@ To check if a user has been requested before sending the request:
 ```javascript
   const address = /*Initialize your automation address*/
   
-  let delegateAddress = /*Request user for their info: Email,phone or address*/ 
+  let delegateAddress = /*Request user for their info: Email or address*/ 
 
   const shakescocontract = new Automation(address);
 
@@ -55,7 +55,7 @@ Send request to user. Ask user for their email, phone or delegate address they r
 
   const period = "604800" //1 week
   const amount = utils.parseEther("0.002") //amount to request regularly
-  const delegateAddress = /*Ask user for their delegate account(Address,email or phone)*/
+  const delegateAddress = /*Ask user for their delegate account(Address or email)*/
 
   const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);//request user
   const requestBusiness = await shakescocontract.requestBusiness(delegateAddress,period,amount);//or request business
@@ -69,7 +69,7 @@ To check if user has made payment or not:
 ```javascript
   const address = /*Initialize your automation address*/
   
-  let delegateAddress = /*Request user for their info: Email,phone or address*/ 
+  let delegateAddress = /*Request user for their info: Email or address*/ 
 
   const shakescocontract = new Automation(address);
 

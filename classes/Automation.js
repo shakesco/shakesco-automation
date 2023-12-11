@@ -27,7 +27,7 @@ class Automation {
 
   /**
    * @notice Request permission to pull payment from the user
-   * @param address The address to request funds from
+   * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
    */
@@ -55,7 +55,7 @@ class Automation {
 
   /**
    * @notice Request permission to pull payment from the user(Token edition)
-   * @param address The address to request funds from
+   * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
    */
@@ -83,7 +83,7 @@ class Automation {
 
   /**
    * @notice Request permission to pull payment from the business
-   * @param address The address to request funds from
+   * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
    */
@@ -111,7 +111,7 @@ class Automation {
 
   /**
    * @notice Request permission to pull payment from the business(Token edition)
-   * @param address The address to request funds from
+   * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
    */
@@ -139,7 +139,7 @@ class Automation {
 
   /**
    * @notice Check if address has been requested
-   * @param address The address to check if it has beeen requested
+   * @param address The address to check if it has beeen requested. Can also be email
    * @returns true or false if the address has been requested or not
    */
   async isRequested(address) {
@@ -164,7 +164,7 @@ class Automation {
   /**
    * @notice Check if address has paid
    * @notice Make sure to call this function where the service you are providing is
-   * @param address The address to check if they have made payment
+   * @param address The address to check if they have made payment. Can also be email
    * @returns true or false if the address has made payment
    */
   async hasPaid(address) {
