@@ -33,10 +33,10 @@ class Automation {
   async requestUser(address, period, amount) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "request-user",
       period: period,
-      amount: amount,
+      amount: amount.toString(),
       address: address,
     };
 
@@ -46,7 +46,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;
@@ -62,10 +62,10 @@ class Automation {
   async requestUserToken(address, period, amount) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "request-user-token",
       period: period,
-      amount: amount,
+      amount: amount.toString(),
       address: address,
     };
 
@@ -75,7 +75,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;
@@ -91,10 +91,10 @@ class Automation {
   async requestBusiness(address, period, amount) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "request-business",
       period: period,
-      amount: amount,
+      amount: amount.toString(),
       address: address,
     };
 
@@ -104,7 +104,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;
@@ -120,10 +120,10 @@ class Automation {
   async requestBusinessToken(address, period, amount) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "request-business-token",
       period: period,
-      amount: amount,
+      amount: amount.toString(),
       address: address,
     };
 
@@ -133,7 +133,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;
@@ -147,7 +147,7 @@ class Automation {
   async isRequested(address) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "check-request",
       address: address,
     };
@@ -158,7 +158,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;
@@ -173,7 +173,7 @@ class Automation {
   async hasPaid(address) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
-      clientaddress: this._automation.address,
+      clientaddress: await this._automation.getAddress(),
       event: "check-payment",
       address: address,
     };
@@ -184,7 +184,7 @@ class Automation {
       });
 
       ws.on("message", (message) => {
-        resolve(message);
+        resolve(message.toString());
       });
     });
     return await checkRequest;

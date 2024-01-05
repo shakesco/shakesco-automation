@@ -12,14 +12,14 @@ After installing:
 ```javascript
 const shakesco = require("@shakesco/automation");
 const { TestAutomation, delegateAccount, Automation } = shakesco;
-const { providers, Wallet, utils } = shakesco
+const { JsonRpcProvider, Wallet, parseUnits } = shakesco;
 ```
 
 Use the `TestAutomation` for testing before going live.
 
 When using `TestAutomation`:
 ```javascript
-  const provider = new providers.JsonRpcProvider(process.env.MATICRPC_URL);
+  const provider = new JsonRpcProvider(process.env.MATICRPC_URL);
 
   const wallet = new Wallet(process.env.MUMBAIPRIVKEY, provider);
 
@@ -47,18 +47,19 @@ To check if a user has been requested before sending the request:
 >📓NOTE: Please note that boolean values are returned as __STRINGS__
 
 
-Send request to user. Ask user for their email, phone or delegate address they registered with us.
+Send request to user. Ask user for their email or delegate address they registered with us.
 ```javascript
   const address = /*Initialize your automation address. Can be found in your dashboard https://shakesco.com*/
 
   const shakescocontract = new Automation(address);
 
   const period = "604800" //1 week
-  const amount = utils.parseEther("0.002") //amount to request regularly
-  const delegateAddress = /*Ask user for their delegate account(Address or email)*/
+  const amount = parseUnits("0.2", 18); //amount to request regularly - Polygon
+  const tokenAmount = parseUnits("20", 6); //amount to request regularly - Tether USDt
+  const delegateAddress = /*Ask user/business for their delegate account(Address or email)*/
 
   const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);//request user
-  const requestBusiness = await shakescocontract.requestBusiness(delegateAddress,period,amount);//or request business
+  const requestBusiness = await shakescocontract.requestBusinessToken(delegateAddress,period,tokenAmount);//or request business
   console.log(requestUser);//Requested user successfully
   console.log(requestBusiness);//Requested business successfully
 ```

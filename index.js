@@ -1,12 +1,12 @@
 const { TestAutomation, delegateAccount } = require("./classes/TestAutomation");
 const Automation = require("./classes/Automation");
-const { providers, Wallet, utils } = require("ethers");
+const { JsonRpcProvider, Wallet, parseUnits } = require("ethers");
 
 module.exports = {
   TestAutomation,
   delegateAccount,
   Automation,
-  providers,
+  JsonRpcProvider,
   Wallet,
-  utils,
+  parseUnits,
 };
