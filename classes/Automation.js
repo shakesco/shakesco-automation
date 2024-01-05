@@ -5,8 +5,6 @@ const WebSocket = require("ws");
 const PORT = `8022`;
 const IP = "shakesco.com";
 
-const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
-
 const abi = [
   'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount)',
   'function requestPermissionUsersToken(address payable _from, address _erc20Address, uint256 _period, uint256 _amount)',
@@ -33,6 +31,7 @@ class Automation {
    */
 
   async requestUser(address, period, amount) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "request-user",
@@ -61,6 +60,7 @@ class Automation {
    */
 
   async requestUserToken(address, period, amount) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "request-user-token",
@@ -89,6 +89,7 @@ class Automation {
    */
 
   async requestBusiness(address, period, amount) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "request-business",
@@ -117,6 +118,7 @@ class Automation {
    */
 
   async requestBusinessToken(address, period, amount) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "request-business-token",
@@ -143,6 +145,7 @@ class Automation {
    * @returns true or false if the address has been requested or not
    */
   async isRequested(address) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "check-request",
@@ -168,6 +171,7 @@ class Automation {
    * @returns true or false if the address has made payment
    */
   async hasPaid(address) {
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: this._automation.address,
       event: "check-payment",
