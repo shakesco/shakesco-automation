@@ -28,9 +28,10 @@ class Automation {
    * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @param apikey Your api key provided by shakesco for authorization
    */
 
-  async requestUser(address, period, amount) {
+  async requestUser(address, period, amount, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -38,6 +39,7 @@ class Automation {
       period: period,
       amount: amount.toString(),
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -57,9 +59,10 @@ class Automation {
    * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @param apikey Your api key provided by shakesco for authorization
    */
 
-  async requestUserToken(address, period, amount) {
+  async requestUserToken(address, period, amount, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -67,6 +70,7 @@ class Automation {
       period: period,
       amount: amount.toString(),
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -86,9 +90,10 @@ class Automation {
    * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @param apikey Your api key provided by shakesco for authorization
    */
 
-  async requestBusiness(address, period, amount) {
+  async requestBusiness(address, period, amount, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -96,6 +101,7 @@ class Automation {
       period: period,
       amount: amount.toString(),
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -115,9 +121,10 @@ class Automation {
    * @param address The address to request funds from. Can also be email
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @param apikey Your api key provided by shakesco for authorization
    */
 
-  async requestBusinessToken(address, period, amount) {
+  async requestBusinessToken(address, period, amount, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -125,6 +132,7 @@ class Automation {
       period: period,
       amount: amount.toString(),
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -142,14 +150,16 @@ class Automation {
   /**
    * @notice Check if address has been requested
    * @param address The address to check if it has beeen requested. Can also be email
+   * @param apikey Your api key provided by shakesco for authorization
    * @returns true or false if the address has been requested or not
    */
-  async isRequested(address) {
+  async isRequested(address, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-request",
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -168,14 +178,16 @@ class Automation {
    * @notice Check if address has paid
    * @notice Make sure to call this function where the service you are providing is
    * @param address The address to check if they have made payment. Can also be email
+   * @param apikey Your api key provided by shakesco for authorization
    * @returns true or false if the address has made payment
    */
-  async hasPaid(address) {
+  async hasPaid(address, apikey) {
     const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-payment",
       address: address,
+      apikey: apikey,
     };
 
     const checkRequest = await new Promise((resolve) => {

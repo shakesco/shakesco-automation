@@ -31,7 +31,7 @@ When using `TestAutomation`:
 > ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://shakesco.com "Shakeco") to get fee rates and api keys.
+>📓NOTE: Visit [__Shakesco__](https://users.shakesco.com/ "Shakeco") to get fee rates and api keys.
 
 To check if a user has been requested before sending the request:
 ```javascript
