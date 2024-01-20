@@ -1,6 +1,6 @@
 {
   "name": "@shakesco/automation",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "shakesco automation package",
   "author": "shawn kimtai",
   "main": "index.js",
