@@ -31,7 +31,7 @@ When using `TestAutomation`:
 > ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://users.shakesco.com/ "Shakeco") to get fee rates and api keys.
+>📓NOTE: Visit [__Shakesco__](https://users.shakesco.com/ "Shakeco") to get fee rates and api key.
 
 To check if a user has been requested before sending the request:
 ```javascript
@@ -39,7 +39,7 @@ To check if a user has been requested before sending the request:
   
   let delegateAddress = /*Request user for their info: Email or address*/ 
 
-  const shakescocontract = new Automation(address);
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
   const requestUser = await shakescocontract.isRequested(delegateAddress);
   console.log(requestUser);//"true"
@@ -49,21 +49,25 @@ To check if a user has been requested before sending the request:
 
 Send request to user. Ask user for their email or delegate address they registered with us.
 ```javascript
-  const address = /*Initialize your automation address. Can be found in your dashboard https://shakesco.com*/
+  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com/ */
 
-  const shakescocontract = new Automation(address);
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
   const period = "604800" //1 week
+
   const amount = parseUnits("0.2", 18); //amount to request regularly - Polygon
   const tokenAmount = parseUnits("20", 6); //amount to request regularly - Tether USDt
+
   const delegateAddress = /*Ask user/business for their delegate account(Address or email)*/
 
   const requestUser = await shakescocontract.requestUser(delegateAddress,period,amount);//request user
+
   const requestBusiness = await shakescocontract.requestBusinessToken(delegateAddress,period,tokenAmount);//or request business
+
   console.log(requestUser);//Requested user successfully
   console.log(requestBusiness);//Requested business successfully
 ```
->📓NOTE: Period should be in seconds.
+>📓NOTE: Period should be in seconds. Amount should be in native asset. Eg: 0.2 is in Polygon
 
 
 To check if user has made payment or not:
@@ -72,7 +76,7 @@ To check if user has made payment or not:
   
   let delegateAddress = /*Request user for their info: Email or address*/ 
 
-  const shakescocontract = new Automation(address);
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
   const requestUser = await shakescocontract.hasPaid(delegateAddress);
   console.log(requestUser);//"true"
@@ -82,4 +86,6 @@ To check if user has made payment or not:
 
 We will be deprecating stablecoins(USDT) in the near future and adding Ethereum. We encourage the use of these assets rather than stablecoins.  
 
-ENJOY😁!!!
+We also don't offer daily automation. If your business requires daily automation please reach out to us!
+
+ENJOY YOUR FINANCIAL FREEDOM😁!!!
