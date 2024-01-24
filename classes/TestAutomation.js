@@ -1,9 +1,9 @@
 const ethers = require("ethers");
 
-const delegateAccount = "0xC73Afb809Faf01d1f3fF9B401C82f49262C612a2";
+const delegateAccount = "0x73D65aC543B0cB111de1338468F0738d1f64f45A";
 
 //Address of business autopayment contract
-const automationBusiness = "0xA0cA70236dC55C9F31CD53aC278e5c963f8783Cf";
+const automationBusiness = "0x231E152e72357B4DA117AF8282b0704af12A4B9c";
 
 const abi = [
   'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount)',
