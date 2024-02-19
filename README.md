@@ -3,8 +3,7 @@
 This repository makes it easy for businesss to interact with their 
 autopayment contract and enable automation!
 
-Before intergrating please read this [short explanation on how the system works](./system.md "explain shakespay"). It will help you understand
-how you may want to setup your autopayments.
+Before intergrating please read this [short explanation on how the system works](./system.md "explain shakespay automation"). It will help you understand how you may want to setup your autopayments.
 
 To install:
 ```shell
@@ -34,7 +33,7 @@ When using `TestAutomation`:
 > ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key.
+>📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key. __Because the system is on testnet you don't need to test this until release to mainnet. This is because you don't have API keys☹️__
 
 To check if a user has been requested before sending the request:
 ```javascript

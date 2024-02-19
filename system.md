@@ -33,17 +33,27 @@ To check if payment was made, use the `hasPaid` method.
 >⚠️Please check this method anywhere you are offering the service. This is the only way to check if you should release service or not.
 
 #### Period
-Period should be given in seconds. If you want to do monthly, set period as `2592000`. (Assuming you want 30 day period) 
+Period should be given in seconds. If you want to do monthly, set period as `2592000`. (Assuming you want 30 day period)
+
+>⚠️Please enter period in seconds.
 
 #### Amount
 Amount should be given in units. So if you want 20 usd, enter `20`. Make sure to use `parseUnits` as directed in the docs.
+
+>⚠️Please enter amount in usd. Convert from local currency accordingly.
 
 #### Discount period.
 When deploying autopayments you had to enter a discount period. A discount period is a period when users can enjoy your service to test it out, free trial. They will be required to pay after the end of the free trial. This cannot be change to avoid manipulation by companies. Users CANNOT manipulate this with their account. It is only offered once. We are looking at how we can make it even more efficient that you don't have to worry about users creating numerous accounts to get free tier all the time.
 
 #### Grace period
-Grace period is the period after pay day that the user can enjoy your services before they are cut if they don't make payment. If you have deployed with or without it okay because you can edit. 
+Grace period is the period after pay day that the user can enjoy your services before they are cut off if they don't make payment. If you have deployed with or without it okay because you can edit. 
 
->⚠️ Be careful with this value. Because we don't make the push/pull calls, to make the system decentralized we rely on a network of node to make these calls, we put intervals of 4 days/345600 sec. So meaning if you put a period less than 4 days/345600 sec as your grace period the system will work fine. But if you put like 7days/ 604800 sec the system will work but will with a delay on some accounts. Decide the tradeoff.
+>⚠️ Be careful with this value. Because we don't make the push/pull calls, to make the system decentralized we rely on a network of node through [__chainlink__](https://automation.chain.link/ "chainlink") to make these calls, we put intervals of 4 days/345600 sec. So meaning if you put a period less than 4 days/345600 sec as your grace period the system will work fine. But if you put like 7days/ 604800 sec the system will work but will with a delay on some accounts. Decide the tradeoff. 
 
->📓Please note that we will deprecate Tether USDt. Your account will hold all the received USDt but it won't be pulled anymore by the automation system or be shown on the Shakespay UI. We will also be adding Ethereum, we want to see how the system works on Polygon because this is the first self-custody autopayment system on EVM. When we deprecate Tether USDt be sure to update your system to either Polygon or Ethereum. We also don't offer Daily intervals, if you require 1 or 2 day intervals [reach out!](https://shakesco.netlify.app/contact "Shakeco")!
+>📓Once we go to daily pull/push request you will be alerted so you don't have to be stuck on this dilemma.
+
+>📓Please note that we will deprecate Tether USDt. Your account will hold all the received USDt but it won't be pulled anymore by the automation system or be shown on the Shakespay UI. We will also be adding Ethereum, we want to see how the system works on Polygon because this is the first self-custody autopayment system on EVM. When we deprecate Tether USDt you can remain on the old system that pulls Tether USDt or move to pulling Ethereum or Polygon.
+
+>⚠️We advise you do the latter. USDT is centralized, the funds are not fully self-custody. Shakespay cannot assure ownership as we would with Ethereum or Polygon.
+
+>📓We also don't offer Daily intervals, if you require 1 or 2 day intervals [reach out](https://shakesco.netlify.app/contact "Shakeco")!
