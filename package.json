@@ -1,0 +1,22 @@
+{
+  "name": "@shakesco/automation",
+  "version": "1.1.1",
+  "description": "shakesco automation package",
+  "author": "Shakesco",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/shakesco/Shakeco-Package/issues"
+  },
+  "license": "GPL-3.0",
+  "keywords": [
+    "shakesco",
+    "ethers",
+    "autopayments",
+    "ethereum",
+    "polygon",
+    "contract"
+  ],
+  "dependencies": {
+    "ethers": "^6.9.2"
+  }
+}
