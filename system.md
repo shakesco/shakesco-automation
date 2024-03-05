@@ -5,6 +5,7 @@
   - [Solution:](#solution)
   - [How shakespay works:](#how-shakespay-works)
     - [Requests](#requests)
+    - [Username](#username)
     - [Payment](#payment)
     - [Period](#period)
     - [Amount](#amount)
@@ -28,6 +29,9 @@ Shakespay works as explained above but we made some changes due to our Security 
 For you to start pulling payments, you need to make a pull request. So you use the request method, `requestUser` or `requestBusinessToken`, from our package to request the user and await approval(Tell user/business to accept request from device). The reason we did this is because your wallet is guarded by TSS(Threshold Signature Scheme) meaning when creating a wallet, you went through a protocol that split shares between you and a remote server. This will make it cumbersome for your ui to integrate so we took this approach.
 >⚠️Please check this method when requesting user. It will fail if already requested.
 
+#### Username
+>⚠️When user is giving their username, please check if it has `.sns` suffix. __If it doesn't please add.__ 
+
 #### Payment
 To check if payment was made, use the `hasPaid` method. 
 >⚠️Please check this method anywhere you are offering the service. This is the only way to check if you should release service or not.
@@ -35,7 +39,7 @@ To check if payment was made, use the `hasPaid` method.
 #### Period
 Period should be given in seconds. If you want to do monthly, set period as `2592000`. (Assuming you want 30 day period)
 
->⚠️Please enter period in seconds.
+>⚠️Please enter period in seconds. Also don't enter a period less that 4 days/345600 sec because calls are made after 4 days. Eg: Putting 2days/172800 sec, you are telling the system to pull after two days and two days after that, but the system will only pull once. If you require 1 or 2 day intervals [reach out](https://shakesco.netlify.app/contact "Shakeco")!
 
 #### Amount
 Amount should be given in units. So if you want 20 usd, enter `20`. Make sure to use `parseUnits` as directed in the docs.
