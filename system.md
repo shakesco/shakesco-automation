@@ -34,7 +34,7 @@ Shakespay works as explained above but we made some changes due to our Security 
 #### Autopayment works only once!
 They autopayment system is a bit different from the traditional system. In the traditional system if Bob gives Alice his card, alice will use their card to perform autopayment in your business and Bob can do the same. In this system, if Bob gives Alice their address, service will only be given to Bob. 
 
->⚠️ If an attacker knows bob registered `bob.sns` as his identity, they may use this to mask themselves as `bob.eth`. We have taken action to make sure they don't affect bob's subscription. There are still some issues to work out but __THE ATTACKER CANNOT AFFECT THE SYSTEM OR STEAL FROM YOUR BUSINESS OR USER__
+>⚠️ If an attacker knows bob registered `bob.sns` as his identity, they may use this to mask themselves as `bob.sns`. We have taken action to make sure they don't affect bob's subscription. But if bob comes to register after the attacker, your business may offer service to both. It is advised to use __`delegate address`__ instead of email or identity.There are still some issues to work out but __THE ATTACKER CANNOT AFFECT USERS AUTOPAYMENT OR STEAL FROM YOUR BUSINESS OR USER__
 
 #### Split
 Split payments for recurring payments are here! This is only for C2B transactions. `requestUser` is now editted to allow split payments. When you are requesting users do they want to split payment with their friends? Set `wantstosplit` to true or false accordingly. If true populate `split` and `splitamount` with the number of users who will be participating in the split payment. Make sure they are the same length. 
