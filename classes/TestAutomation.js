@@ -1,29 +1,31 @@
 const ethers = require("ethers");
 
-const delegateAccount = "0x73D65aC543B0cB111de1338468F0738d1f64f45A";
+const delegateAccount = "0x40254910A5C72627402b8c2Db5dA54cECd8338DE";
+
+const deleateEthAccount = "0x11B2b3B5C77A8E0c1C1C5DD16Fde5A66cB0dbD1c";
 
 //Address of business autopayment contract
-const automationBusiness = "0x231E152e72357B4DA117AF8282b0704af12A4B9c";
+const automationBusiness = "0x2bfe3a7293cfb100ead686be8036e97ce2b6cb8c";
+
+//Address of business autopayment contract
+const automationEthBusiness = "0xAF23C496dc9Da044A722AB96c873d1fd5546Eab4";
 
 const abi = [
-  'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount)',
+  'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount, bool wanttosplit, address payable[] calldata split, uint256[] calldata splitamount)',
   'function requestPermissionBusiness(address payable _from, uint256 _period, uint256 _amount)',
-  'function removeRequest(address businessCustomer)',
   'function getIfRequested(address businessCustomer) view returns (bool)',
 ]; //prettier-ignore
 
 class TestAutomation {
   /**
    * @notice Create TestAutomation instance to interact with
-   * @dev Provider MUST be mumbai
-   * @param signerOrProvider signer or mumbai provider to use
+   * @dev Provider MUST be mumbai or sepolia
+   * @param signerOrProvider provider or mumbai/sepolia provider to use
+   * @param address automation address to use
    */
-  constructor(signerOrProvider) {
-    this._automation = new ethers.Contract(
-      automationBusiness,
-      abi,
-      signerOrProvider
-    );
+
+  constructor(signerOrProvider, address) {
+    this._automation = new ethers.Contract(address, abi, signerOrProvider);
   }
 
   /**
@@ -56,6 +58,7 @@ class TestAutomation {
    * @param address The address to request funds from
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @deprecated Use requestUser instead
    */
 
   async requestUserToken(address, period, amount) {
@@ -107,6 +110,7 @@ class TestAutomation {
    * @param address The address to request funds from
    * @param period The interval that payment will be requested
    * @param amount Amount to request
+   * @deprecated Use requestBusiness instead
    */
 
   async requestBusinessToken(address, period, amount) {
@@ -131,6 +135,7 @@ class TestAutomation {
   /**
    * @notice Removes Request for address
    * @param address The address to remove request for
+   * @deprecated Don't use this method. Just request user.
    */
 
   async removeRequest(address) {
@@ -158,4 +163,10 @@ class TestAutomation {
   }
 }
 
-module.exports = { TestAutomation, delegateAccount };
+module.exports = {
+  TestAutomation,
+  delegateAccount,
+  deleateEthAccount,
+  automationBusiness,
+  automationEthBusiness,
+};

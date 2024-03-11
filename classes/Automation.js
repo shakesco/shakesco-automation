@@ -17,10 +17,12 @@ class Automation {
    * @notice Create Automation instance to interact with
    * @param address Your automation address
    * @param apikey Your api key provided by shakesco for authorization
+   * @param network The network you want to perform operations on: "Ethereum" or "Polygon"
    */
-  constructor(address, apikey) {
+  constructor(address, apikey, network) {
     this._automation = new ethers.Contract(address, abi);
     this._apikey = apikey;
+    this._network = network;
   }
 
   /**
@@ -45,6 +47,7 @@ class Automation {
       split: wantstosplit,
       splitAccounts: split,
       splitAmounts: splitamount,
+      network: this._network,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -75,6 +78,7 @@ class Automation {
       amount: amount.toString(),
       address: address,
       apikey: this._apikey,
+      network: this._network,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -101,6 +105,7 @@ class Automation {
       event: "check-request",
       address: address,
       apikey: this._apikey,
+      network: this._network,
     };
 
     const checkRequest = await new Promise((resolve) => {
@@ -128,6 +133,7 @@ class Automation {
       event: "check-payment",
       address: address,
       apikey: this._apikey,
+      network: this._network,
     };
 
     const checkRequest = await new Promise((resolve) => {
