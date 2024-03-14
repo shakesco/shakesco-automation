@@ -33,7 +33,7 @@ When using `TestAutomation`:
 > ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI OR SEPOLIA__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key. __Because the system is on testnet you don't need to test this until release to mainnet. This is because you don't have API keys☹️__
+>📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key.
 
 Send request to user. Ask user for their email or delegate address or username they registered with us.
 ```javascript
