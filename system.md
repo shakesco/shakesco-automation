@@ -55,7 +55,7 @@ Split payments for recurring payments are here! This is only for C2B transaction
 >📓 When you want to change price, feel free to do so. The service will still be given to the user until the end of the payment period. They will be required to update and start paying with the new amount so that service can be provided. 
 
 #### Changing period
->📓 When you want to change period, __DON'T__. Please [reach out](https://shakesco.netlify.app/contact "Shakeco")! We can't edit the period too, we just want to see if this is the case for a number of businesses so that contracts can be editted and you can update if you want! This edit may also be added in next release.
+>📓 When you want to change period, you will have to send another request with new period. The user/business will need to accept again and pay at that time to start new period.
 
 #### Requests
 For you to start pulling payments, you need to make a pull request. So you use the request method, `requestUser` or `requestBusiness`, from our package to request the user and await approval(Tell user/business to accept request from device). The reason we did this is because your wallet is guarded by TSS(Threshold Signature Scheme) meaning when creating a wallet, you went through a protocol that split shares between you and a remote server. This will make it cumbersome for your ui to integrate so we took this approach.
