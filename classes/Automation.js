@@ -3,8 +3,7 @@ const ethers = require("ethers");
 const WebSocket = require("ws");
 
 const PORT = `8022`;
-// const IP = "shakesco.com";
-const IP = "192.168.0.108";
+const IP = "shakesco.com";
 
 const abi = [
   {
@@ -67,7 +66,7 @@ class Automation {
    */
 
   async requestUser(address, period, amount, wantstosplit, split, splitamount) {
-    const ws = new WebSocket(`ws://${IP}:${PORT}`);
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-user",
@@ -101,7 +100,7 @@ class Automation {
    */
 
   async requestBusiness(address, period, amount) {
-    const ws = new WebSocket(`ws://${IP}:${PORT}`);
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-business",
@@ -130,7 +129,7 @@ class Automation {
    * @returns true or false if the address has been requested or not
    */
   async isRequested(address) {
-    const ws = new WebSocket(`ws://${IP}:${PORT}`);
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-request",
@@ -158,7 +157,7 @@ class Automation {
    * @returns true or false if the address has made payment
    */
   async hasPaid(address) {
-    const ws = new WebSocket(`ws://${IP}:${PORT}`);
+    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-payment",
