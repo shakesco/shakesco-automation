@@ -3,14 +3,45 @@ const ethers = require("ethers");
 const WebSocket = require("ws");
 
 const PORT = `8022`;
-const IP = "shakesco.com";
+// const IP = "shakesco.com";
+const IP = "192.168.0.108";
 
 const abi = [
-  'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount, bool wanttosplit, address payable[] calldata split, uint256[] calldata splitamount)',
-  'function requestPermissionBusiness(address payable _from, uint256 _period, uint256 _amount)',
-  'function getIfPaid(address businessCustomers) view returns (bool)',
-  'function getIfRequested(address businessCustomer) view returns (bool)',
-]; //prettier-ignore
+  {
+    type: "function",
+    name: "requestPermissionUsers",
+    constant: false,
+    payable: false,
+    gas: 29000000,
+    inputs: [
+      {
+        type: "address",
+        name: "_from",
+      },
+      {
+        type: "uint256",
+        name: "_period",
+      },
+      {
+        type: "uint256",
+        name: "_amount",
+      },
+      {
+        type: "bool",
+        name: "wanttosplit",
+      },
+      {
+        type: "address[]",
+        name: "split",
+      },
+      {
+        type: "uint256[]",
+        name: "splitamount",
+      },
+    ],
+    outputs: [],
+  },
+];
 
 class Automation {
   /**
@@ -36,7 +67,7 @@ class Automation {
    */
 
   async requestUser(address, period, amount, wantstosplit, split, splitamount) {
-    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
+    const ws = new WebSocket(`ws://${IP}:${PORT}`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-user",
@@ -70,7 +101,7 @@ class Automation {
    */
 
   async requestBusiness(address, period, amount) {
-    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
+    const ws = new WebSocket(`ws://${IP}:${PORT}`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-business",
@@ -99,7 +130,7 @@ class Automation {
    * @returns true or false if the address has been requested or not
    */
   async isRequested(address) {
-    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
+    const ws = new WebSocket(`ws://${IP}:${PORT}`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-request",
@@ -127,7 +158,7 @@ class Automation {
    * @returns true or false if the address has made payment
    */
   async hasPaid(address) {
-    const ws = new WebSocket(`wss://${IP}:${PORT}/ws`);
+    const ws = new WebSocket(`ws://${IP}:${PORT}`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-payment",

@@ -17,6 +17,6 @@
     "contract"
   ],
   "dependencies": {
-    "ethers": "^6.9.2"
+    "ethers": "^6.8.1"
   }
 }

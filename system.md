@@ -57,6 +57,8 @@ Split payments for recurring payments are here! This is only for C2B transaction
 #### Changing period
 >📓 When you want to change period, you will have to send another request with new period. The user/business will need to accept again and pay at that time to start new period.
 
+⚠️ User/business will have to accept change in price and amount. They system doesn't allow automatic updates. You will have to request user to accept from mobile
+
 #### Requests
 For you to start pulling payments, you need to make a pull request. So you use the request method, `requestUser` or `requestBusiness`, from our package to request the user and await approval(Tell user/business to accept request from device). The reason we did this is because your wallet is guarded by TSS(Threshold Signature Scheme) meaning when creating a wallet, you went through a protocol that split shares between you and a remote server. This will make it cumbersome for your ui to integrate so we took this approach.
 

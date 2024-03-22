@@ -11,10 +11,82 @@ const automationBusiness = "0x2bfe3a7293cfb100ead686be8036e97ce2b6cb8c";
 const automationEthBusiness = "0xAF23C496dc9Da044A722AB96c873d1fd5546Eab4";
 
 const abi = [
-  'function requestPermissionUsers(address payable _from, uint256 _period, uint256 _amount, bool wanttosplit, address payable[] calldata split, uint256[] calldata splitamount)',
-  'function requestPermissionBusiness(address payable _from, uint256 _period, uint256 _amount)',
-  'function getIfRequested(address businessCustomer) view returns (bool)',
-]; //prettier-ignore
+  {
+    type: "function",
+    name: "requestPermissionUsers",
+    constant: false,
+    payable: false,
+    gas: 29000000,
+    inputs: [
+      {
+        type: "address",
+        name: "_from",
+      },
+      {
+        type: "uint256",
+        name: "_period",
+      },
+      {
+        type: "uint256",
+        name: "_amount",
+      },
+      {
+        type: "bool",
+        name: "wanttosplit",
+      },
+      {
+        type: "address[]",
+        name: "split",
+      },
+      {
+        type: "uint256[]",
+        name: "splitamount",
+      },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "requestPermissionBusiness",
+    constant: false,
+    payable: false,
+    gas: 29000000,
+    inputs: [
+      {
+        type: "address",
+        name: "_from",
+      },
+      {
+        type: "uint256",
+        name: "_period",
+      },
+      {
+        type: "uint256",
+        name: "_amount",
+      },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "getIfRequested",
+    constant: true,
+    stateMutability: "view",
+    payable: false,
+    gas: 29000000,
+    inputs: [
+      {
+        type: "address",
+        name: "businessCustomer",
+      },
+    ],
+    outputs: [
+      {
+        type: "bool",
+      },
+    ],
+  },
+];
 
 class TestAutomation {
   /**
