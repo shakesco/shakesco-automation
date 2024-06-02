@@ -35,7 +35,7 @@ When using `TestAutomation`:
 When ready to move live:
 >📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key.
 
-Send request to user. Ask user for their email or delegate address or username they registered with us.
+Send request to user. Ask user for delegate address/ Shakespay card/ business card address.
 ```javascript
   const address = /* Initialize your automation address. Can be found in your dashboard https://shakesco.netlify.app/ */
 
@@ -45,11 +45,11 @@ Send request to user. Ask user for their email or delegate address or username t
 
   const amount = parseUnits("20", 18); //amount to request regularly 
 
-  const delegateAddress = /*Ask user/business for their delegate account(Address or email or identity(.SNS))*/
+  const delegateAddress = /*Ask user/business for their Shakespay card/delegate/business card ONLY.*/
 
-  const requestUser = await shakescocontract.requestUser(delegateAddress, period, amount, false, [], []);//request user
+  const requestUser = await shakescocontract.requestUser(delegateAddress, "", period, amount, false, [], []);//request user
 
-  const requestBusiness = await shakescocontract.requestBusiness(delegateAddress,period,amount);//or request business
+  const requestBusiness = await shakescocontract.requestBusiness(delegateAddress,"", period, amount);//or request business
 
   console.log(requestUser);//Requested user successfully
   console.log(requestBusiness);//Requested business successfully
@@ -58,7 +58,7 @@ Send request to user. Ask user for their email or delegate address or username t
 
 When you want to request split payment: 
 ```javascript
-  const address = /* Initialize your automation address. Can be found in your dashboard https://shakesco.netlify.app/ */
+  const address = /* Initialize your automation/Shakespay auto/business auto address. Can be found in your dashboard https://shakesco.netlify.app/ */
 
   const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
@@ -66,30 +66,53 @@ When you want to request split payment:
 
   const totalAmount = parseUnits("30", 18); //amount to request regularly 
 
-  const mainAddress = /** Users delegate account, email or identity(.SNS)*/
+  const mainAddress = /** Users Shakespay card/delegate/business card ONLY.*/
 
-  const friends = ["", ""]; //request friend details. Delegate account, email or identity(.SNS)
+  const friends = ["", ""]; //request friend details. Shakespay card/delegate/business card ONLY.
 
   const friendsAmount = [parseUnits("10", 18), parseUnits("10", 18)];
 
   const mainamount = parseUnits("10", 18);
   
-  const requestUser = await shakescocontract.requestUser(mainAddress, period, mainamount, true, friends, friendsAmount);//request user
+  const requestUser = await shakescocontract.requestUser(mainAddress, "", period, mainamount, true, friends, friendsAmount);//request user
 
-  console.log(requestUser); //Requested user successfully (Returns for main only)
+  console.log(requestUser); //Requested user successfully (Returns for mainAddress only)
 
-  //so check the rest.
+  //so check the rest, "friends".
   for (let i = 0; i < friends.length; i++) {
     const isrequested = await shakescocontract.isRequested(friends[i]);
-    console.log(isrequested); // true/false
+    console.log(isrequested); // true / false
   }
+```
+
+When you want to request a token: 
+
+```javascript
+  const address = /* Initialize your automation address. Can be found in your dashboard https://shakesco.netlify.app/ */
+
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "Ethereum");
+
+  const period = "604800" //1 week
+
+  const amount = parseUnits("20", 18); //amount to request regularly 
+
+  const delegateAddress = /*Ask user/business for their Shakespay card/delegate/business card ONLY.*/
+
+  const tokenAddress = "" //Make sure it is checksummed
+
+  const requestUser = await shakescocontract.requestUser(delegateAddress, tokenAddress, period, amount, false, [], []);//request user
+
+  const requestBusiness = await shakescocontract.requestBusiness(delegateAddress, tokenAddress, period, amount);//or request business
+
+  console.log(requestUser);//Requested user successfully
+  console.log(requestBusiness);//Requested business successfully
 ```
 
 To check if user has made payment or not:
 ```javascript
   const address = /*Initialize your automation address*/
   
-  let delegateAddress = /*Request user for their info: Email or address or identity(.SNS)*/ 
+  let delegateAddress = /*Request user for their info: Shakespay card/delegate/business card address ONLY*/
 
   const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
