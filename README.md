@@ -12,8 +12,7 @@ npm i @shakesco/automation
 
 After installing:
 ```javascript
-const shakesco = require("@shakesco/automation");
-const { Automation, parseUnits } = shakesco;
+const { Automation, parseUnits } = require("@shakesco/automation");
 ```
 
 When ready to move live:
@@ -106,6 +105,6 @@ To check if user has made payment or not:
 >⚠️WARNING: Check the above step where you are offering your service. Otherwise you will
 > offer service for free without knowing. For split auto-payment, service is only given to 'group leader'. So always query them alone, the rest will just return false.
 
-We also don't offer daily automation. If your business requires daily automation [please reach out to us](https://shakesco.netlify.app/contact "Shakeco")!
+We also don't offer daily automation. If your business requires daily automation [please reach out to us](https://shakespay.shakesco.com/contact "Shakesco")!
 
 ENJOY YOUR FINANCIAL FREEDOM😁!!!

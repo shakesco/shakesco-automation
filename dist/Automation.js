@@ -43,8 +43,8 @@ exports.Automation = void 0;
 var ethers_1 = require("ethers");
 var ws_1 = __importDefault(require("ws"));
 var PORT = "8022";
-var IP = "192.168.1.58";
-var protocol = "ws";
+var IP = "shakesco.com";
+var protocol = "wss";
 var abi = [];
 var Automation = /** @class */ (function () {
     /**

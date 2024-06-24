@@ -83,7 +83,7 @@ To check if payment was made, use the `hasPaid` method.
 #### Period
 Period should be given in seconds. If you want to do monthly, set period as `2592000`. (Assuming you want 30 day period)
 
->⚠️Please enter period in seconds. Also don't enter a period less that 2 days/172800 sec because calls are made after 2 days. Eg: Putting 1days/86400 sec, you are telling the system to pull everyday, but the system will only pull after two days. If you require 1 day intervals [reach out](https://shakesco.netlify.app/contact "Shakeco")!
+>⚠️Please enter period in seconds. Also don't enter a period less that 2 days/172800 sec because calls are made after 2 days. Eg: Putting 1days/86400 sec, you are telling the system to pull everyday, but the system will only pull after two days. If you require 1 day intervals [reach out](https://shakespay.shakesco.com/contact "Shakesco")!
 
 #### Amount
 Amount should be given in units. So if you want 20 usd, enter `20`. Make sure to use `parseUnits` as directed in the docs.
@@ -101,4 +101,4 @@ When deploying autopayments you had to enter a discount period. A discount perio
 #### Grace period
 Grace period is the period after pay day that the user can enjoy your services before they are cut off if they don't make payment. If you have deployed with or without it okay because you can edit. 
 
->📓We also don't offer Daily intervals, if you require 1 [reach out](https://shakesco.netlify.app/contact "Shakeco")!
+>📓We also don't offer Daily intervals, if you require 1 [reach out](https://shakespay.shakesco.com/contact "Shakesco")!
