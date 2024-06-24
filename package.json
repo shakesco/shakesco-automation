@@ -4,6 +4,7 @@
   "description": "shakesco automation package",
   "author": "Shakesco",
   "main": "index.js",
+  "types": "index.d.ts",
   "bugs": {
     "url": "https://github.com/shakesco/Shakeco-Package/issues"
   },
@@ -18,5 +19,10 @@
   ],
   "dependencies": {
     "ethers": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.5.2"
   }
 }

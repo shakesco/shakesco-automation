@@ -1,56 +1,28 @@
-//DONT EDIT THIS FILE
-const ethers = require("ethers");
-const WebSocket = require("ws");
+import { ethers } from "ethers";
+import WebSocket from "ws";
 
 const PORT = `8022`;
 const IP = "shakesco.com";
 const protocol = "wss";
 
-const abi = [
-  {
-    type: "function",
-    name: "requestPermissionUsers",
-    constant: false,
-    payable: false,
-    gas: 29000000,
-    inputs: [
-      {
-        type: "address",
-        name: "_from",
-      },
-      {
-        type: "uint256",
-        name: "_period",
-      },
-      {
-        type: "uint256",
-        name: "_amount",
-      },
-      {
-        type: "bool",
-        name: "wanttosplit",
-      },
-      {
-        type: "address[]",
-        name: "split",
-      },
-      {
-        type: "uint256[]",
-        name: "splitamount",
-      },
-    ],
-    outputs: [],
-  },
-];
+const abi: ethers.InterfaceAbi = [];
 
-class Automation {
+export class Automation {
+  private _automation: ethers.Contract;
+  private _apikey: string;
+  private _network: string;
+
   /**
    * @notice Create Automation instance to interact with
    * @param address Your automation address
    * @param apikey Your api key provided by shakesco for authorization
    * @param network The network you want to perform operations on: "Ethereum" or "Polygon"
    */
-  constructor(address, apikey, network) {
+  constructor(
+    address: string,
+    apikey: string,
+    network: "Ethereum" | "Polygon"
+  ) {
     this._automation = new ethers.Contract(address, abi);
     this._apikey = apikey;
     this._network = network;
@@ -66,16 +38,15 @@ class Automation {
    * @param split The users he want to split payment with.
    * @param splitamount The amount each should send. Should be set by you
    */
-
   async requestUser(
-    address,
-    tokenAddress,
-    period,
-    amount,
-    wantstosplit,
-    split,
-    splitamount
-  ) {
+    address: string,
+    tokenAddress: string,
+    period: number,
+    amount: number,
+    wantstosplit: boolean,
+    split: string[],
+    splitamount: number[]
+  ): Promise<string> {
     const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -91,7 +62,7 @@ class Automation {
       network: this._network,
     };
 
-    const checkRequest = await new Promise((resolve) => {
+    const checkRequest = await new Promise<string>((resolve) => {
       ws.on("open", () => {
         ws.send(JSON.stringify(data));
       });
@@ -100,7 +71,7 @@ class Automation {
         resolve(message.toString());
       });
     });
-    return await checkRequest;
+    return checkRequest;
   }
 
   /**
@@ -110,8 +81,12 @@ class Automation {
    * @param period The interval that payment will be requested
    * @param amount Amount to request
    */
-
-  async requestBusiness(address, tokenAddress, period, amount) {
+  async requestBusiness(
+    address: string,
+    tokenAddress: string,
+    period: number,
+    amount: number
+  ): Promise<string> {
     const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -124,7 +99,7 @@ class Automation {
       network: this._network,
     };
 
-    const checkRequest = await new Promise((resolve) => {
+    const checkRequest = await new Promise<string>((resolve) => {
       ws.on("open", () => {
         ws.send(JSON.stringify(data));
       });
@@ -133,15 +108,15 @@ class Automation {
         resolve(message.toString());
       });
     });
-    return await checkRequest;
+    return checkRequest;
   }
 
   /**
    * @notice Check if address has been requested
-   * @param address The address to check if it has beeen requested.
+   * @param address The address to check if it has been requested.
    * @returns true or false if the address has been requested or not
    */
-  async isRequested(address) {
+  async isRequested(address: string): Promise<string> {
     const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -151,7 +126,7 @@ class Automation {
       network: this._network,
     };
 
-    const checkRequest = await new Promise((resolve) => {
+    const checkRequest = await new Promise<string>((resolve) => {
       ws.on("open", () => {
         ws.send(JSON.stringify(data));
       });
@@ -160,7 +135,7 @@ class Automation {
         resolve(message.toString());
       });
     });
-    return await checkRequest;
+    return checkRequest;
   }
 
   /**
@@ -169,7 +144,7 @@ class Automation {
    * @param address The address to check if they have made payment.
    * @returns true or false if the address has made payment
    */
-  async hasPaid(address) {
+  async hasPaid(address: string): Promise<string> {
     const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
@@ -179,7 +154,7 @@ class Automation {
       network: this._network,
     };
 
-    const checkRequest = await new Promise((resolve) => {
+    const checkRequest = await new Promise<string>((resolve) => {
       ws.on("open", () => {
         ws.send(JSON.stringify(data));
       });
@@ -188,8 +163,6 @@ class Automation {
         resolve(message.toString());
       });
     });
-    return await checkRequest;
+    return checkRequest;
   }
 }
-
-module.exports = Automation;

@@ -13,31 +13,15 @@ npm i @shakesco/automation
 After installing:
 ```javascript
 const shakesco = require("@shakesco/automation");
-const { TestAutomation, delegateAccount, Automation, automationBusiness } = shakesco;
-const { JsonRpcProvider, Wallet, parseUnits } = shakesco;
+const { Automation, parseUnits } = shakesco;
 ```
-
-Use the `TestAutomation` for testing before going live.
-
-When using `TestAutomation`:
-```javascript
-  const provider = new JsonRpcProvider(process.env.MATICRPC_URL);
-
-  const wallet = new Wallet(process.env.MUMBAIORSEPOLIAPRIVKEY, provider);
-
-  const shakescocontract = new TestAutomation(wallet, automationBusiness);
-
-  const checkRequest = await shakescocontract.isRequested(delegateAccount);
-  console.log(checkRequest);
-```
-> ⚠️ The __privatekey__ and __provider__ for testing __MUST BE IN MUMBAI OR SEPOLIA__. Visit [__Alchemy__](https://dashboard.alchemy.com "Alchemy")
 
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://shakesco.netlify.app/ "Shakeco") to get fee rates and api key.
+>📓NOTE: Visit [__Shakesco__](https://shakespay.shakesco.com/pricing "Shakeco") to get fee rates and api key.
 
 Send request to user. Ask user for delegate address/ Shakespay card/ business card address.
 ```javascript
-  const address = /* Initialize your automation address. Can be found in your dashboard https://shakesco.netlify.app/ */
+  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
 
   const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "Ethereum");
 
@@ -58,7 +42,7 @@ Send request to user. Ask user for delegate address/ Shakespay card/ business ca
 
 When you want to request split payment: 
 ```javascript
-  const address = /* Initialize your automation/Shakespay auto/business auto address. Can be found in your dashboard https://shakesco.netlify.app/ */
+  const address = /* Initialize your automation/Shakespay auto/business auto address. Can be found in your dashboard https://users.shakesco.com */
 
   const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
 
@@ -88,7 +72,7 @@ When you want to request split payment:
 When you want to request a token: 
 
 ```javascript
-  const address = /* Initialize your automation address. Can be found in your dashboard https://shakesco.netlify.app/ */
+  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
 
   const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "Ethereum");
 
