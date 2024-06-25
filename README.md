@@ -47,8 +47,6 @@ When you want to request split payment:
 
   const period = "604800" //1 week
 
-  const totalAmount = parseUnits("30", 18); //amount to request regularly 
-
   const mainAddress = /** Users Shakespay card/delegate/business card ONLY.*/
 
   const friends = ["", ""]; //request friend details. Shakespay card/delegate/business card ONLY.

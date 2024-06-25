@@ -18,11 +18,7 @@ export class Automation {
    * @param apikey Your api key provided by shakesco for authorization
    * @param network The network you want to perform operations on: "Ethereum" or "Polygon"
    */
-  constructor(
-    address: string,
-    apikey: string,
-    network: "Ethereum" | "Polygon"
-  ) {
+  constructor(address: string, apikey: string, network: string) {
     this._automation = new ethers.Contract(address, abi);
     this._apikey = apikey;
     this._network = network;
@@ -67,7 +63,7 @@ export class Automation {
         ws.send(JSON.stringify(data));
       });
 
-      ws.on("message", (message) => {
+      ws.on("message", (message: any) => {
         resolve(message.toString());
       });
     });
@@ -104,7 +100,7 @@ export class Automation {
         ws.send(JSON.stringify(data));
       });
 
-      ws.on("message", (message) => {
+      ws.on("message", (message: any) => {
         resolve(message.toString());
       });
     });
@@ -131,7 +127,7 @@ export class Automation {
         ws.send(JSON.stringify(data));
       });
 
-      ws.on("message", (message) => {
+      ws.on("message", (message: any) => {
         resolve(message.toString());
       });
     });
@@ -159,7 +155,7 @@ export class Automation {
         ws.send(JSON.stringify(data));
       });
 
-      ws.on("message", (message) => {
+      ws.on("message", (message: any) => {
         resolve(message.toString());
       });
     });
