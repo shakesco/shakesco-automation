@@ -1,6 +1,11 @@
 //DONT EDIT THIS FILE
 const ethers = require("ethers");
-const WebSocket = require("ws");
+let WebSocketClient;
+if (typeof window === "undefined") {
+  WebSocketClient = require("ws");
+} else {
+  WebSocketClient = WebSocket;
+}
 
 const PORT = `8022`;
 const IP = "shakesco.com";
@@ -76,7 +81,7 @@ class Automation {
     split,
     splitamount
   ) {
-    const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-user",
@@ -112,7 +117,7 @@ class Automation {
    */
 
   async requestBusiness(address, tokenAddress, period, amount) {
-    const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "request-business",
@@ -142,7 +147,7 @@ class Automation {
    * @returns true or false if the address has been requested or not
    */
   async isRequested(address) {
-    const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-request",
@@ -170,7 +175,7 @@ class Automation {
    * @returns true or false if the address has made payment
    */
   async hasPaid(address) {
-    const ws = new WebSocket(`${protocol}://${IP}:${PORT}/ws`);
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
     const data = {
       clientaddress: await this._automation.getAddress(),
       event: "check-payment",

@@ -35,13 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Automation = void 0;
 var ethers_1 = require("ethers");
-var ws_1 = __importDefault(require("ws"));
+var WebSocketClient;
+if (typeof window === "undefined") {
+    WebSocketClient = require("ws");
+}
+else {
+    WebSocketClient = WebSocket;
+}
 var PORT = "8022";
 var IP = "shakesco.com";
 var protocol = "wss";
@@ -75,7 +78,7 @@ var Automation = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        ws = new ws_1.default("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
                         _a = {};
                         return [4 /*yield*/, this._automation.getAddress()];
                     case 1:
@@ -120,7 +123,7 @@ var Automation = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        ws = new ws_1.default("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
                         _a = {};
                         return [4 /*yield*/, this._automation.getAddress()];
                     case 1:
@@ -160,7 +163,7 @@ var Automation = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        ws = new ws_1.default("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
                         _a = {};
                         return [4 /*yield*/, this._automation.getAddress()];
                     case 1:
@@ -198,7 +201,7 @@ var Automation = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        ws = new ws_1.default("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
                         _a = {};
                         return [4 /*yield*/, this._automation.getAddress()];
                     case 1:
