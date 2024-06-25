@@ -95,12 +95,12 @@ var Automation = /** @class */ (function () {
                             _a.network = this._network,
                             _a);
                         return [4 /*yield*/, new Promise(function (resolve) {
-                                ws.on("open", function () {
+                                ws.onopen = function () {
                                     ws.send(JSON.stringify(data));
-                                });
-                                ws.on("message", function (message) {
-                                    resolve(message.toString());
-                                });
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
                             })];
                     case 2:
                         checkRequest = _b.sent();
@@ -137,12 +137,12 @@ var Automation = /** @class */ (function () {
                             _a.network = this._network,
                             _a);
                         return [4 /*yield*/, new Promise(function (resolve) {
-                                ws.on("open", function () {
+                                ws.onopen = function () {
                                     ws.send(JSON.stringify(data));
-                                });
-                                ws.on("message", function (message) {
-                                    resolve(message.toString());
-                                });
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
                             })];
                     case 2:
                         checkRequest = _b.sent();
@@ -174,12 +174,12 @@ var Automation = /** @class */ (function () {
                             _a.network = this._network,
                             _a);
                         return [4 /*yield*/, new Promise(function (resolve) {
-                                ws.on("open", function () {
+                                ws.onopen = function () {
                                     ws.send(JSON.stringify(data));
-                                });
-                                ws.on("message", function (message) {
-                                    resolve(message.toString());
-                                });
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
                             })];
                     case 2:
                         checkRequest = _b.sent();
@@ -212,12 +212,12 @@ var Automation = /** @class */ (function () {
                             _a.network = this._network,
                             _a);
                         return [4 /*yield*/, new Promise(function (resolve) {
-                                ws.on("open", function () {
+                                ws.onopen = function () {
                                     ws.send(JSON.stringify(data));
-                                });
-                                ws.on("message", function (message) {
-                                    resolve(message.toString());
-                                });
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
                             })];
                     case 2:
                         checkRequest = _b.sent();

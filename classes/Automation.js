@@ -97,13 +97,13 @@ class Automation {
     };
 
     const checkRequest = await new Promise((resolve) => {
-      ws.on("open", () => {
+      ws.onopen = () => {
         ws.send(JSON.stringify(data));
-      });
+      };
 
-      ws.on("message", (message) => {
-        resolve(message.toString());
-      });
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
     });
     return await checkRequest;
   }
@@ -130,13 +130,13 @@ class Automation {
     };
 
     const checkRequest = await new Promise((resolve) => {
-      ws.on("open", () => {
+      ws.onopen = () => {
         ws.send(JSON.stringify(data));
-      });
+      };
 
-      ws.on("message", (message) => {
-        resolve(message.toString());
-      });
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
     });
     return await checkRequest;
   }
@@ -157,13 +157,13 @@ class Automation {
     };
 
     const checkRequest = await new Promise((resolve) => {
-      ws.on("open", () => {
+      ws.onopen = () => {
         ws.send(JSON.stringify(data));
-      });
+      };
 
-      ws.on("message", (message) => {
-        resolve(message.toString());
-      });
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
     });
     return await checkRequest;
   }
@@ -185,13 +185,13 @@ class Automation {
     };
 
     const checkRequest = await new Promise((resolve) => {
-      ws.on("open", () => {
+      ws.onopen = () => {
         ws.send(JSON.stringify(data));
-      });
+      };
 
-      ws.on("message", (message) => {
-        resolve(message.toString());
-      });
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
     });
     return await checkRequest;
   }
