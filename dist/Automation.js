@@ -52,15 +52,85 @@ var abi = [];
 var Automation = /** @class */ (function () {
     /**
      * @notice Create Automation instance to interact with
-     * @param address Your automation address
+     * @param address Your automation address or delegate address if testing
      * @param apikey Your api key provided by shakesco for authorization
-     * @param network The network you want to perform operations on: "Ethereum" or "Polygon"
+     * @param network The network you want to perform operations on: "1" or "137" or "11155111"
      */
     function Automation(address, apikey, network) {
         this._automation = new ethers_1.ethers.Contract(address, abi);
         this._apikey = apikey;
         this._network = network;
     }
+    /**
+     * @notice Request a test delegate address
+     */
+    Automation.prototype.testDelegateAddress = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ws, data, checkRequest;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        _a = {};
+                        return [4 /*yield*/, this._automation.getAddress()];
+                    case 1:
+                        data = (_a.clientaddress = _b.sent(),
+                            _a.event = "deploy-delegate",
+                            _a.apikey = this._apikey,
+                            _a.network = this._network,
+                            _a);
+                        return [4 /*yield*/, new Promise(function (resolve) {
+                                ws.onopen = function () {
+                                    ws.send(JSON.stringify(data));
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data);
+                                };
+                            })];
+                    case 2:
+                        checkRequest = _b.sent();
+                        return [4 /*yield*/, checkRequest];
+                    case 3: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * @notice Request a business test delegate address
+     */
+    Automation.prototype.testDelegateAddressBuss = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ws, data, checkRequest;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        _a = {};
+                        return [4 /*yield*/, this._automation.getAddress()];
+                    case 1:
+                        data = (_a.clientaddress = _b.sent(),
+                            _a.event = "deploy-delegate-buss",
+                            _a.apikey = this._apikey,
+                            _a.network = this._network,
+                            _a);
+                        return [4 /*yield*/, new Promise(function (resolve) {
+                                ws.onopen = function () {
+                                    ws.send(JSON.stringify(data));
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data);
+                                };
+                            })];
+                    case 2:
+                        checkRequest = _b.sent();
+                        return [4 /*yield*/, checkRequest];
+                    case 3: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
     /**
      * @notice Request permission to pull payment from the user
      * @param address The address to request funds from.

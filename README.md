@@ -1,28 +1,86 @@
-## @shakesco/automation
+# @shakesco/automation
 
-This repository makes it easy for businesss to interact with their 
-autopayment contract and enable automation!
+This repository makes it easy for businesses to interact with their
+auto-payment contract and enable automation!
 
-Before intergrating please read this [short explanation on how the system works](./system.md "explain shakespay automation"). It will help you understand how you may want to setup your autopayments.
+Before intergrating please read this [short explanation on how the system works](https://docs.shakesco.com/docs/autopayments/integration/ "explain shakespay automation"). It will help you understand how you may want to setup your autopayments.
 
 To install:
+
 ```shell
 npm i @shakesco/automation
 ```
 
 After installing:
+
 ```javascript
 const { Automation, parseUnits } = require("@shakesco/automation");
 ```
 
+## Test
+
+Before getting started, send a test request to make sure everthing is okay.
+
+First request a delegate address:
+
+```javascript
+  const shakescocontract = new Automation(
+    your_smart_wallet_address, 
+    process.env.SHAKESCOAPIKEY,
+    "11155111"
+  );
+
+  const your_smart_wallet_address = "";
+
+  const requestAddress = await shakescocontract.testDelegateAddressBuss(); //request test address
+
+  console.log(requestAddress);
+  // {
+  //   id: "1",
+  //   test_delegate_address: "0x472ef8282b420396ad307cb89f542e60b1dec1a1",
+  // }
+```
+
+Then send a request:
+
+```javascript
+  const address = ""; // Your test delegate address you requested above
+
+  const shakescocontract = new Automation(
+  /* Requested delegate address above*/;,
+  process.env.SHAKESCOAPIKEY, 
+  "11155111");
+
+  const period = "86400" //1 day
+
+  const delegateAddress = 
+
+  const requestUser = await shakescocontract.requestUser(
+    "0x309E7d835ccE6E74BC72A2E523fa7f79FFC0d413", // parse this address 
+    "", 
+    period, 
+    "", 
+    false, 
+    [], 
+    []);//request user
+
+  console.log(requestUser);//Requested user successfully
+```
+
+>📓 __NOTE__: Check if the request is sent to your Shakespay app. If you request business check on Business account side, if you request user, check on Personal account side.
+
+## Live
+
 When ready to move live:
->📓NOTE: Visit [__Shakesco__](https://shakespay.shakesco.com/pricing "Shakeco") to get fee rates and api key.
+
+>📓 __NOTE__: Visit __Shakesco__ to [get fee rates](https://shakesco.com/pricing "Shakesco") and [api key](https://users.shakesco.com "Log in").
 
 Send request to user. Ask user for delegate address/ Shakespay card/ business card address.
+
 ```javascript
   const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "Ethereum");
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
 
   const period = "604800" //1 week
 
@@ -37,13 +95,15 @@ Send request to user. Ask user for delegate address/ Shakespay card/ business ca
   console.log(requestUser);//Requested user successfully
   console.log(requestBusiness);//Requested business successfully
 ```
+
 >📓NOTE: Period should be in seconds. Amount should be in usd. Eg: "20" is in usd. Boolean values are returned as __STRINGS__
 
-When you want to request split payment: 
+When you want to request split payment:
+
 ```javascript
   const address = /* Initialize your automation/Shakespay auto/business auto address. Can be found in your dashboard https://users.shakesco.com */
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
 
   const period = "604800" //1 week
 
@@ -66,12 +126,12 @@ When you want to request split payment:
   }
 ```
 
-When you want to request a token: 
+When you want to request a token:
 
 ```javascript
   const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "Ethereum");
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "137");
 
   const period = "604800" //1 week
 
@@ -90,19 +150,21 @@ When you want to request a token:
 ```
 
 To check if user has made payment or not:
+
 ```javascript
   const address = /*Initialize your automation address*/
   
   let delegateAddress = /*Request user for their info: Shakespay card/delegate/business card address ONLY*/
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY);
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "137");
 
   const requestUser = await shakescocontract.hasPaid(delegateAddress);
   console.log(requestUser);//"true"
 ```
+
 >⚠️WARNING: Check the above step where you are offering your service. Otherwise you will
 > offer service for free without knowing. For split auto-payment, service is only given to 'group leader'. So always query them alone, the rest will just return false.
 
-We also don't offer daily automation. If your business requires daily automation [please reach out to us](https://shakespay.shakesco.com/contact "Shakesco")!
+We also don't offer daily automation. If your business requires daily automation [please reach out to us](https://shakesco.com/contact "Shakesco")!
 
 ENJOY YOUR FINANCIAL FREEDOM😁!!!

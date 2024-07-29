@@ -51,14 +51,64 @@ const abi = [
 class Automation {
   /**
    * @notice Create Automation instance to interact with
-   * @param address Your automation address
+   * @param address Your automation address or delegate address if testing
    * @param apikey Your api key provided by shakesco for authorization
-   * @param network The network you want to perform operations on: "Ethereum" or "Polygon"
+   * @param network The network you want to perform operations on: "1" or "137" or "11155111"
    */
   constructor(address, apikey, network) {
     this._automation = new ethers.Contract(address, abi);
     this._apikey = apikey;
     this._network = network;
+  }
+
+  /**
+   * @notice Request a test delegate address
+   */
+
+  async testDelegateAddress() {
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
+    const data = {
+      clientaddress: await this._automation.getAddress(),
+      event: "deploy-delegate",
+      apikey: this._apikey,
+      network: this._network,
+    };
+
+    const checkRequest = await new Promise((resolve) => {
+      ws.onopen = () => {
+        ws.send(JSON.stringify(data));
+      };
+
+      ws.onmessage = (message) => {
+        resolve(message.data);
+      };
+    });
+    return await checkRequest;
+  }
+
+  /**
+   * @notice Request a business test delegate address
+   */
+
+  async testDelegateAddressBuss() {
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
+    const data = {
+      clientaddress: await this._automation.getAddress(),
+      event: "deploy-delegate-buss",
+      apikey: this._apikey,
+      network: this._network,
+    };
+
+    const checkRequest = await new Promise((resolve) => {
+      ws.onopen = () => {
+        ws.send(JSON.stringify(data));
+      };
+
+      ws.onmessage = (message) => {
+        resolve(message.data);
+      };
+    });
+    return await checkRequest;
   }
 
   /**
