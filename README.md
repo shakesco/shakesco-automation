@@ -24,13 +24,13 @@ Before getting started, send a test request to make sure everthing is okay.
 First request a delegate address:
 
 ```javascript
+  const your_smart_wallet_address = "";
+
   const shakescocontract = new Automation(
     your_smart_wallet_address, 
     process.env.SHAKESCOAPIKEY,
     "11155111"
   );
-
-  const your_smart_wallet_address = "";
 
   const requestAddress = await shakescocontract.testDelegateAddressBuss(); //request test address
 
@@ -47,13 +47,11 @@ Then send a request:
   const address = ""; // Your test delegate address you requested above
 
   const shakescocontract = new Automation(
-  /* Requested delegate address above*/;,
+  address,
   process.env.SHAKESCOAPIKEY, 
   "11155111");
 
   const period = "86400" //1 day
-
-  const delegateAddress = 
 
   const requestUser = await shakescocontract.requestUser(
     "0x309E7d835ccE6E74BC72A2E523fa7f79FFC0d413", // parse this address 
