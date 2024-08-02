@@ -27,7 +27,7 @@ First request a delegate address:
   const your_smart_wallet_address = "";
 
   const shakescocontract = new Automation(
-    your_smart_wallet_address, 
+    your_smart_wallet_address, // business smart wallet address
     process.env.SHAKESCOAPIKEY,
     "11155111"
   );
