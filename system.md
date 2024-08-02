@@ -41,7 +41,7 @@ The autopayment system is a bit different from the traditional system. In the tr
 
 We have added support for you to request tokens from users. For now we only support WBTC, WETH, USDT and USDC on Polygon. On Ethereum we accept: WBTC, USDT and USDC.
 
-⚠️ When entering token address, please make sure it is a checksu mmed address. Otherwise your autopayment account will not work properly. Especially with STABLECOINS! If you don't want to accept tokens, just enter an empty string in its place.
+⚠️ When entering token address, please make sure it is a checksummed address. Otherwise your autopayment account will not work properly. Especially with __STABLECOINS__! If you don't want to accept tokens, just enter an empty string in its place.
 
 Thankfully we have done the work for you. Polygon:
 
@@ -77,9 +77,7 @@ Split payments for recurring payments are here! This is only for C2B transaction
 
 #### Changing period
 
->📓 When you want to change period, you will have to send another request with new period. The user/business will need to accept again and pay at that time to start new period.
-
-⚠️ User/business will have to accept change in price. They system doesn't allow automatic update for period change. You will have to request user to accept from [mobile](https://play.google.com/store/apps/details?id=com.shakesco.shakespay2 "on android") / [shakespay app](https://apps.apple.com/us/app/shakespay-bitcoin-ethereum/id6478241603 "on ios").
+>📓 Same as amount, when you want to change period, feel free to do so. The service will still be given to the user until the end of the payment period. The system will automatically update and they will start the new period.
 
 #### Requests
 
@@ -94,13 +92,14 @@ To check if payment was made, use the `hasPaid` method.
 
 Period should be given in seconds. If you want to do monthly, set period as `2592000`. (Assuming you want 30 day period)
 
->⚠️Please enter period in seconds. Also don't enter a period less that 2 days/172800 sec because calls are made after 2 days. Eg: Putting 1days/86400 sec, you are telling the system to pull everyday, but the system will only pull after two days. If you require 1 day intervals [reach out](https://shakesco.com/contact "Shakesco")!
+>⚠️ Don't enter `604,800`.
+> Please enter period in seconds. Also don't enter a period less that 2 days/172800 sec because calls are made after 2 days. Eg: Putting 1days/86400 sec, you are telling the system to pull everyday, but the system will only pull after two days. If you require 1 day intervals [reach out](https://shakesco.com/contact "Shakesco")!
 
 #### Amount
 
 Amount should be given in units. So if you want 20 usd, enter `20`. Make sure to use `parseUnits` as directed in the docs.
 
->⚠️Please enter amount in usd. Convert from local currency accordingly.
+>⚠️Please enter amount in USD. Convert from local currency accordingly.
 
 #### Fees
 
