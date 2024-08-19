@@ -19,6 +19,8 @@ const { Automation, parseUnits } = require("@shakesco/automation");
 
 ## Test
 
+>📓 __NOTE__: We fund your test delegate address automatically, so you don't need to enter an amount in testing mode.
+
 Before getting started, send a test request to make sure everthing is okay.
 
 First request a delegate address:
@@ -65,15 +67,16 @@ Then send a request:
   console.log(requestUser);//Requested user successfully
 ```
 
->📓 __NOTE__: Check if the request is sent to your Shakespay app. If you request business check on Business account side, if you request user, check on Personal account side.
+>📓 __NOTE__: Check if the request is sent to your Shakespay app. If you request business check on Business wallet side, if you request user, check on [Personal wallet side](https://x.com/shakespay/status/1820573879334576486).
 
 ## Live
 
-When ready to move live:
+>📓 __NOTE__: Visit [__Shakesco__](https://shakesco.com/pricing "Shakesco") to get fee rates and then get your api keys [here](https://users.shakesco.com). If you want to see the fee charged for every transaction, go [__here__](https://shakesco.com/charges "Shakesco")
 
->📓 __NOTE__: Visit __Shakesco__ to [get fee rates](https://shakesco.com/pricing "Shakesco") and [api key](https://users.shakesco.com "Log in").
+When ready to go live, here's how to send a request to a user or business:
 
-Send request to user. Ask user for delegate address/ Shakespay card/ business card address.
+* Ask the user for their Shakespay card address.
+* If the request is for a business, ask for their Business card address.
 
 ```javascript
   const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
@@ -97,6 +100,8 @@ Send request to user. Ask user for delegate address/ Shakespay card/ business ca
 >📓NOTE: Period should be in seconds. Amount should be in usd. Eg: "20" is in usd. Boolean values are returned as __STRINGS__
 
 When you want to request split payment:
+
+>📓 __NOTE__: Read [this](https://docs.shakesco.com/docs/autopayments/integration#split) to understand split payments.
 
 ```javascript
   const address = /* Initialize your automation/Shakespay auto/business auto address. Can be found in your dashboard https://users.shakesco.com */
@@ -125,6 +130,8 @@ When you want to request split payment:
 ```
 
 When you want to request a token:
+
+>📓 __NOTE__: Read [this](https://docs.shakesco.com/docs/autopayments/integration#requesting-token) to understand token payments.
 
 ```javascript
   const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
