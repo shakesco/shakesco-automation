@@ -18,7 +18,7 @@
     "contract"
   ],
   "dependencies": {
-    "ethers": "^6.8.1",
+    "ethers": "^6.13.4",
     "ws": "^8.18.0"
   },
   "devDependencies": {
