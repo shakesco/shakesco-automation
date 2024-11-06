@@ -2,11 +2,11 @@
   "name": "@shakesco/automation",
   "version": "1.2.2",
   "description": "shakesco automation package",
-  "author": "Shakesco",
+  "author": "Shawn Kimtai",
   "main": "index.js",
   "types": "index.d.ts",
   "bugs": {
-    "url": "https://github.com/shakesco/Shakeco-Package/issues"
+    "url": "https://github.com/shakesco/shakesco-automation/issues"
   },
   "license": "GPL-3.0",
   "keywords": [
