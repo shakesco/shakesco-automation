@@ -18,11 +18,12 @@
     "contract"
   ],
   "dependencies": {
-    "ethers": "^6.8.1"
+    "ethers": "^6.8.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.8",
-    "@types/ws": "^8.5.10",
+    "@types/ws": "^8.5.13",
     "typescript": "^5.5.2"
   }
 }
