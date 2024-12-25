@@ -106,9 +106,9 @@ When ready to go live, here's how to send a request to a user or business:
 Before requesting, check if the payer can be requested. If not, they should accept requests from there Shakesco app.
 
 ```javascript
-  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
+  const your_smart_wallet_address = ""; // get on your dashboard https://users.shakesco.com/login
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
+  const shakescocontract = new Automation(your_smart_wallet_address, process.env.SHAKESCOAPIKEY, "1");
 
   const delegateAddress = /*Ask user/business for their Shakesco card/delegate/business card ONLY.*/
 
@@ -121,9 +121,9 @@ Before requesting, check if the payer can be requested. If not, they should acce
 Before requesting, check if the payer is a business or user. Businesses and customers have different [charges](https://shakesco.com/charges) per every successful transaction.
 
 ```javascript
-  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
+  const your_smart_wallet_address = ""; // get on your dashboard https://users.shakesco.com/login
 
-  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
+  const shakescocontract = new Automation(your_smart_wallet_address, process.env.SHAKESCOAPIKEY, "1");
 
   const delegateAddress = /*Ask user/business for their Shakesco card/delegate/business card ONLY.*/
 
