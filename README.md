@@ -73,6 +73,8 @@ Then send a request:
 
 >📓 __NOTE__: Visit [__Shakesco__](https://shakesco.com/pricing "Shakesco") to get fee rates and then get your api keys [here](https://users.shakesco.com). If you want to see the fee charged for every transaction, go [__here__](https://shakesco.com/charges "Shakesco")
 
+To check if you can request a certain user [check here](#can-request). To check which payer you are requesting, [check here](#check-payer)
+
 When ready to go live, here's how to send a request to a user or business:
 
 * Ask the user for their Shakesco card address.
@@ -98,6 +100,38 @@ When ready to go live, here's how to send a request to a user or business:
 ```
 
 >📓NOTE: Period should be in seconds. Amount should be in usd. Eg: "20" is in usd. Boolean values are returned as __STRINGS__
+
+### Can Request
+
+Before requesting, check if the payer can be requested. If not, they should accept requests from there Shakesco app.
+
+```javascript
+  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
+
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
+
+  const delegateAddress = /*Ask user/business for their Shakesco card/delegate/business card ONLY.*/
+
+  const canre = await shakescocontract.canRequest(delegateAddress);
+  console.log(canre); // {"id":1,"status":"true"}
+```
+
+### Check Payer
+
+Before requesting, check if the payer is a business or user. Businesses and customers have different [charges](https://shakesco.com/charges) per every successful transaction.
+
+```javascript
+  const address = /* Initialize your automation address. Can be found in your dashboard https://users.shakesco.com */
+
+  const shakescocontract = new Automation(address, process.env.SHAKESCOAPIKEY, "1");
+
+  const delegateAddress = /*Ask user/business for their Shakesco card/delegate/business card ONLY.*/
+
+  const canre = await shakescocontract.isBusiness(delegateAddress);
+  console.log(canre); // {"id":1,"is_business":false}
+```
+
+### Split
 
 When you want to request split payment:
 
@@ -129,6 +163,8 @@ When you want to request split payment:
   }
 ```
 
+### Request Tokens
+
 When you want to request a token:
 
 >📓 __NOTE__: Read [this](https://docs.shakesco.com/docs/autopayments/integration#requesting-token) to understand token payments.
@@ -153,6 +189,8 @@ When you want to request a token:
   console.log(requestUser);//Requested user successfully
   console.log(requestBusiness);//Requested business successfully
 ```
+
+### Check Payment
 
 To check if user has made payment or not:
 

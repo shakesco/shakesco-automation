@@ -296,6 +296,79 @@ var Automation = /** @class */ (function () {
             });
         });
     };
+    /**
+     * @notice Check if address is a business or customer
+     * @param address Shakesco/Business Card Address
+     * @returns true or false depending on wether the address is a business or customer
+     */
+    Automation.prototype.isBusiness = function (address) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ws, data, checkRequest;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        _a = {};
+                        return [4 /*yield*/, this._automation.getAddress()];
+                    case 1:
+                        data = (_a.clientaddress = _b.sent(),
+                            _a.event = "is-business",
+                            _a.address = address,
+                            _a.apikey = this._apikey,
+                            _a);
+                        return [4 /*yield*/, new Promise(function (resolve) {
+                                ws.onopen = function () {
+                                    ws.send(JSON.stringify(data));
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
+                            })];
+                    case 2:
+                        checkRequest = _b.sent();
+                        return [2 /*return*/, checkRequest];
+                }
+            });
+        });
+    };
+    /**
+     * @notice Check if address the user address can be requested.
+     * @param address Shakesco/Business Card Address
+     * @returns true or false depending on wether the address can be requested
+     */
+    Automation.prototype.canRequest = function (address) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ws, data, checkRequest;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        ws = new WebSocketClient("".concat(protocol, "://").concat(IP, ":").concat(PORT, "/ws"));
+                        _a = {};
+                        return [4 /*yield*/, this._automation.getAddress()];
+                    case 1:
+                        data = (_a.clientaddress = _b.sent(),
+                            _a.event = "can-request",
+                            _a.address = address,
+                            _a.apikey = this._apikey,
+                            _a.network = this._network,
+                            _a);
+                        return [4 /*yield*/, new Promise(function (resolve) {
+                                ws.onopen = function () {
+                                    ws.send(JSON.stringify(data));
+                                };
+                                ws.onmessage = function (message) {
+                                    resolve(message.data.toString());
+                                };
+                            })];
+                    case 2:
+                        checkRequest = _b.sent();
+                        return [2 /*return*/, checkRequest];
+                }
+            });
+        });
+    };
     return Automation;
 }());
 exports.Automation = Automation;

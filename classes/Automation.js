@@ -245,6 +245,59 @@ class Automation {
     });
     return await checkRequest;
   }
+
+  /**
+   * @notice Check if address is a business or customer
+   * @param address Shakesco/Business Card Address
+   * @returns true or false depending on wether the address is a business or customer
+   */
+  async isBusiness(address) {
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
+    const data = {
+      clientaddress: await this._automation.getAddress(),
+      event: "is-business",
+      address: address,
+      apikey: this._apikey,
+    };
+
+    const checkRequest = await new Promise((resolve) => {
+      ws.onopen = () => {
+        ws.send(JSON.stringify(data));
+      };
+
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
+    });
+    return checkRequest;
+  }
+
+  /**
+   * @notice Check if address the user address can be requested.
+   * @param address Shakesco/Business Card Address
+   * @returns true or false depending on wether the address can be requested
+   */
+  async canRequest(address) {
+    const ws = new WebSocketClient(`${protocol}://${IP}:${PORT}/ws`);
+    const data = {
+      clientaddress: await this._automation.getAddress(),
+      event: "can-request",
+      address: address,
+      apikey: this._apikey,
+      network: this._network,
+    };
+
+    const checkRequest = await new Promise((resolve) => {
+      ws.onopen = () => {
+        ws.send(JSON.stringify(data));
+      };
+
+      ws.onmessage = (message) => {
+        resolve(message.data.toString());
+      };
+    });
+    return checkRequest;
+  }
 }
 
 module.exports = Automation;
