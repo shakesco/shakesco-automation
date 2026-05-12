@@ -1,5 +1,7 @@
 # @shakesco/automation
 
+> **⚠️ DEPRECATED:** This package is no longer maintained.
+
 This repository makes it easy for businesses to interact with their
 auto-payment contract and enable automation!
 
